@@ -1,0 +1,19 @@
+server:
+  tomcat:
+    uri-encoding: utf-8
+  servlet:
+    context-path: /huTool
+  port: 8082
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: hutoolDemo
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC
+    username: root
+    password: zbh080931
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
