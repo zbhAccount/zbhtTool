@@ -27,7 +27,7 @@ import java.util.Properties;
  */
 @RestController
 @RequestMapping("/girl")
-@Api(description = "girl导出控制器2")
+@Api(description = "girl导出控制器")
 public class GirlExportController {
     @Autowired
     GirlService girlService;

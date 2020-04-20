@@ -3,6 +3,7 @@ package com.hutool.demo.girl.controller;
 import cn.hutool.core.io.resource.ClassPathResource;
 import cn.hutool.core.lang.Console;
 import com.hutool.demo.girl.model.Girl;
+import com.hutool.demo.girl.model.Stack;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -25,7 +26,7 @@ import java.util.Properties;
  */
 @RestController
 @RequestMapping("/girl")
-@Api(value = "girl控制器")
+@Api(description = "girl控制器")
 @PropertySource(value = "classpath:config.properties", encoding = "utf-8")
 @Slf4j
 public class GirlController {
@@ -76,6 +77,16 @@ public class GirlController {
         Console.log("Properties: {}", properties);
 
         return "test";
+    }
+
+    @RequestMapping(value = "/pop", method = RequestMethod.GET)
+    @ResponseBody
+    @ApiOperation(value = "测试泛型", notes = "返回null")
+    public String pop(){
+        Stack<Girl> stack = new Stack<>();
+        Girl girl = Girl.builder().age("12").name("意愿").tel("15046238596").build();
+        stack.push(girl);
+        return stack.pop().toString();
     }
 
 

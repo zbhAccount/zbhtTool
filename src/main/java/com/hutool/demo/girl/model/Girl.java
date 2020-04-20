@@ -1,6 +1,6 @@
 package com.hutool.demo.girl.model;
 
-import lombok.Data;
+import lombok.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,7 +11,12 @@ import org.springframework.context.annotation.Configuration;
  * @version: $
  */
 @Configuration
-@Data
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@ToString
 public class Girl {
     @Value("${girl.name}")
     private String name;

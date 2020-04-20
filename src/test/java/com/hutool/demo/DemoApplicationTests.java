@@ -215,7 +215,6 @@ class DemoApplicationTests {
     }
 
     @Test
-    @Ignore
     public void writeBeanTest2() {
         Girl order1 = new Girl();
         order1.setAge("1");
@@ -387,4 +386,45 @@ class DemoApplicationTests {
         bufferedOutPut.close();
     }
 
+    @Test
+    public void test15(){
+        List<String> strings = new ArrayList<>();
+        strings.add("1");
+        unsafeadd(strings, new Integer(0));
+        // 编译报错
+        // unsafeadd1(strings, new Integer(0));
+        unsafeadd2(strings, new Integer(0));
+        String s = strings.get(0);
+        // 运行报错
+        String s2 = strings.get(2);
+    }
+
+    /**
+     * ?无限制通配符可以接受任意类型的对象 但是 不能不能添加任何元素（除null外）
+     * @param list
+     * @param o
+     */
+    private void unsafeadd(List<?> list, Object o){
+        // list.add(o);
+        list.add(null);
+        System.out.println(list.get(0));
+    }
+
+    /**
+     * list<String> 是原生态类型List的子类  不是List<Object>的子类 故编译报错
+     * @param list
+     * @param o
+     */
+    private void unsafeadd1(List<Object> list, Object o){
+        list.add(o);
+    }
+
+    /**
+     * list是原生态类型  脱离泛型系统  运行时报错
+     * @param list
+     * @param o
+     */
+    private void unsafeadd2(List list, Object o){
+        list.add(o);
+    }
 }
