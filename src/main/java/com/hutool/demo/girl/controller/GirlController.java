@@ -15,6 +15,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 
@@ -82,12 +84,22 @@ public class GirlController {
     @RequestMapping(value = "/pop", method = RequestMethod.GET)
     @ResponseBody
     @ApiOperation(value = "测试泛型", notes = "返回null")
-    public String pop(){
+    public String pop() {
         Stack<Girl> stack = new Stack<>();
         Girl girl = Girl.builder().age("12").name("意愿").tel("15046238596").build();
         stack.push(girl);
-        return stack.pop().toString();
+        Console.log(stack.pop().toString());
+        Girl girl1 = Girl.builder().age("12").name("未来").tel("15078945622").build();
+        Girl girl2 = Girl.builder().age("13").name("发财").tel("15078594163").build();
+        List<Girl> list = new ArrayList<>();
+        list.add(girl1);
+        list.add(girl2);
+        stack.pushAll(list);
+        Console.log("popAll前：{}", stack.toString());
+        List<Girl> girls = new ArrayList<>();
+        stack.popAll(girls);
+        Console.log("popAll后：{}", stack.toString());
+        return null;
     }
-
 
 }
